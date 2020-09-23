@@ -31,7 +31,6 @@ class Browns(NFLTeam):
                          name="Browns",
                          stadium="FirstEnergy Stadium",
                          stadium_location="Cleveland, Ohio",
-
                          record_2019=(6, 10, 0))
 
 

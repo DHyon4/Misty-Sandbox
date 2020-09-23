@@ -27,8 +27,8 @@ all_teams = flattened_afc + flattened_nfc
 vs_teams = random.sample(all_teams, 2)
 away_team = vs_teams[0]
 home_team = vs_teams[1]
-# away_team = nfl["AFC"]["East"][1]  # Jets, 7 - 9 record
-# home_team = nfl["AFC"]["South"][2]  # Colts, 7 - 9 record
+# home_team = nfl["AFC"]["East"][1]  # New York Jets, 7 - 9 record
+# away_team = nfl["AFC"]["South"][2]  # Indianapolis Colts, 7 - 9 record
 
 winner = NFLStatUtils.calculate_predicted_winner(away_team, home_team)
 
