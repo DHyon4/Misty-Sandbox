@@ -24,11 +24,21 @@ nfc = list(list(nfl.values())[1].values())
 flattened_afc = [divisional_team for division in afc for divisional_team in division]
 flattened_nfc = [divisional_team for division in nfc for divisional_team in division]
 all_teams = flattened_afc + flattened_nfc
-vs_teams = random.sample(all_teams, 2)
+
+
+def random_matchup():
+    return random.sample(all_teams, 2)
+
+
+vs_teams = random_matchup()
 away_team = vs_teams[0]
 home_team = vs_teams[1]
-# home_team = nfl["AFC"]["East"][1]  # New York Jets, 7 - 9 record
+
 # away_team = nfl["AFC"]["South"][2]  # Indianapolis Colts, 7 - 9 record
+# home_team = nfl["AFC"]["East"][1]  # New York Jets, 7 - 9 record
+
+away_team = nfl["AFC"]["West"][1]  # Chiefs
+home_team = nfl["AFC"]["North"][0]  # Ravens
 
 winner = NFLStatUtils.calculate_predicted_winner(away_team, home_team)
 
