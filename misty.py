@@ -1,50 +1,54 @@
-# print("hello world this is Misty")
-a = 1
-b = 2
-# print(a + b)
-# print("Eddie is the man lets go to Korea")
-food = ["ramen", "soda", "breastmilk", "ramen"]
-# print(f"{food[2]} is fucking delicious")
-# for food_item in food:
-#     if food_item == "ramen":
-#         print("spicy butthole")
-#     else:
-#         print("not spicy")
+import random
 
-drinks = ["water"]
-for drink in drinks:
-    print(drink)
-# n=11
-# while n>10:
-#     print(f"Are You Motherfucking Ready Football {n}")
-#     n=n+15
-
-# fruit_and_vegetables = {
-#     "apple": "fruit",
-#     "banana": "fruit",
-#     "orange": "fruit",
-#     "cucumber": "vegetable",
-#     "spinach": "vegetable",
-# }
-# # print(fruit_and_vegetables["apple"])
-# # print(fruit_and_vegetables.values())
-# for green, green_type in fruit_and_vegetables.items():
-#     # print(green, green_type )
-#     print(f"{green} is a {green_type}")
+from team_data import Ravens, Steelers, Browns, Bengals, Texans, Titans, Colts, Jaguars, Patriots, Jets, Dolphins, \
+    Bills, Chiefs, Broncos, Raiders, Chargers, Packers, Vikings, Bears, Lions, Saints, Falcons, Buccaneers, Panthers, \
+    Eagles, Giants, WashingtonFootballTeam, Cowboys, FortyNiners, Seahawks, Rams, Cardinals
+from utils import NFLStatUtils
 
 nfl = {
-    "afc": {
-        "north": ["Ravens", "Steelers", "Browns", "Bengals"],
-        "south": ["Texans", "Titans", "Colts", "Jaguars"],
-        "east": ["Patriots", "Jets", "Dolphins", "Bills"],
-        "west": ["Raiders", "Chiefs", "Chargers", "Broncos"],
+    "AFC": {
+        "North": [Ravens(), Steelers(), Browns(), Bengals()],
+        "South": [Texans(), Titans(), Colts(), Jaguars()],
+        "East": [Patriots(), Jets(), Dolphins(), Bills()],
+        "West": [Raiders(), Chiefs(), Chargers(), Broncos()],
     },
-    "nfc": {
-        "north": ["Packers", "Vikings", "Bears", "Lions"],
-        "south": ["Saints", "Falcons", "Buccaneers", "Panthers"],
-        "east": ["Eagles", "Giants", "Redskins", "WowBoys"],
-        "west": ["49ers", "Seahawks", "Rams", "Cardinals"],
+    "NFC": {
+        "North": [Packers(), Vikings(), Bears(), Lions()],
+        "South": [Saints(), Falcons(), Buccaneers(), Panthers()],
+        "East": [Eagles(), Giants(), WashingtonFootballTeam(), Cowboys()],
+        "West": [FortyNiners(), Seahawks(), Rams(), Cardinals()],
     },
 }
-print(nfl["afc"]["north"][1])
-print(nfl)
+afc = list(list(nfl.values())[0].values())
+nfc = list(list(nfl.values())[1].values())
+flattened_afc = [divisional_team for division in afc for divisional_team in division]
+flattened_nfc = [divisional_team for division in nfc for divisional_team in division]
+all_teams = flattened_afc + flattened_nfc
+
+
+def random_matchup():
+    return random.sample(all_teams, 2)
+
+
+vs_teams = random_matchup()
+away_team = vs_teams[0]
+home_team = vs_teams[1]
+
+# away_team = nfl["AFC"]["South"][2]  # Indianapolis Colts, 7 - 9 record
+# home_team = nfl["AFC"]["East"][1]  # New York Jets, 7 - 9 record
+
+away_team = nfl["AFC"]["West"][1]  # Chiefs
+home_team = nfl["AFC"]["North"][0]  # Ravens
+
+winner = NFLStatUtils.calculate_predicted_winner(away_team, home_team)
+
+point_spread = NFLStatUtils.calculate_point_spread(away_team, home_team)
+
+msg = (f"{'Matchup:':<30}{away_team.city} {away_team.name} vs. {home_team.city} {home_team.name}\n"
+       f"{'Location:':<30}{home_team.stadium}; {home_team.stadium_location}\n"
+       f"{f'{away_team.name} 2019 record:':<30}{away_team.record_2019[0]}-{away_team.record_2019[1]}-{away_team.record_2019[2]}\n"
+       f"{f'{home_team.name} 2019 record:':<30}{home_team.record_2019[0]}-{home_team.record_2019[1]}-{home_team.record_2019[2]}\n"
+       f"{'Predicted winner:':<30}{winner.name}\n"
+       f"{'Point spread:':<30}{point_spread}")
+
+print(msg)
