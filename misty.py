@@ -37,8 +37,12 @@ home_team = vs_teams[1]
 # away_team = nfl["AFC"]["South"][2]  # Indianapolis Colts, 7 - 9 record
 # home_team = nfl["AFC"]["East"][1]  # New York Jets, 7 - 9 record
 
-away_team = nfl["AFC"]["West"][1]  # Chiefs
-home_team = nfl["AFC"]["North"][0]  # Ravens
+# away_team = nfl["AFC"]["West"][1]  # Chiefs
+# home_team = nfl["AFC"]["North"][0]  # Ravens
+
+home_team = nfl["NFC"]["East"][3]  # Cowboys
+away_team = nfl["AFC"]["North"][1]  # Steelers
+
 
 winner = NFLStatUtils.calculate_predicted_winner(away_team, home_team)
 
@@ -48,6 +52,9 @@ msg = (f"{'Matchup:':<30}{away_team.city} {away_team.name} vs. {home_team.city} 
        f"{'Location:':<30}{home_team.stadium}; {home_team.stadium_location}\n"
        f"{f'{away_team.name} 2019 record:':<30}{away_team.record_2019[0]}-{away_team.record_2019[1]}-{away_team.record_2019[2]}\n"
        f"{f'{home_team.name} 2019 record:':<30}{home_team.record_2019[0]}-{home_team.record_2019[1]}-{home_team.record_2019[2]}\n"
+       f"{f'{away_team.name} QBR:':<30} {away_team.QBR}\n"
+       f"{f'{home_team.name} QBR:':<30} {home_team.QBR}\n"
+
        f"{'Predicted winner:':<30}{winner.name}\n"
        f"{'Point spread:':<30}{point_spread}")
 
