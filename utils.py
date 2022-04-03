@@ -10,10 +10,10 @@ class NFLStatUtils:
         """
         away_team_wins = away_team.record_2019[0]
         home_team_wins = home_team.record_2019[0]
-        if home_team.QBR >= away_team.QBR:
-            home_team_wins += 1
-        elif home_team.QBR < away_team.QBR:
-            away_team_wins += 1
+        # if home_team.QBR >= away_team.QBR:
+        #     home_team_wins += 1
+        # elif home_team.QBR < away_team.QBR:
+        #     away_team_wins += 1
         if home_team.has_playoff_experience:
             home_team_wins = +0.75
         if away_team.has_playoff_experience:
